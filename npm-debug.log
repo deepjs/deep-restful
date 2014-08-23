@@ -1,0 +1,191 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish', '--force' ]
+2 info using npm@1.2.15
+3 info using node@v0.10.2
+4 verbose node symlink /usr/bin/node
+5 warn using --force I sure hope you know what you are doing.
+6 verbose publish [ '.' ]
+7 verbose read json /Users/gilles/Documents/works/deep/deepjs-docs/bower_components/deep-restful/package.json
+8 verbose cache add [ '.', null ]
+9 verbose cache add name=undefined spec="." args=[".",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: '.',
+10 verbose parsed url   path: '.',
+10 verbose parsed url   href: '.' }
+11 silly lockFile 3a52ce78- .
+12 verbose lock . /Users/gilles/.npm/3a52ce78-.lock
+13 verbose read json package.json
+14 verbose tar pack [ '/var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz',
+14 verbose tar pack   '.' ]
+15 verbose tarball /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz
+16 verbose folder .
+17 info prepublish deep-restful@0.1.0
+18 silly lockFile 3a52ce78- .
+19 verbose lock . /Users/gilles/.npm/3a52ce78-.lock
+20 silly lockFile eb8cf947-87248-0-7034197063185275-tmp-tgz /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz
+21 verbose lock /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz /Users/gilles/.npm/eb8cf947-87248-0-7034197063185275-tmp-tgz.lock
+22 silly lockFile 3a52ce78- .
+23 silly lockFile 3a52ce78- .
+24 silly lockFile eb8cf947-87248-0-7034197063185275-tmp-tgz /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz
+25 silly lockFile eb8cf947-87248-0-7034197063185275-tmp-tgz /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz
+26 verbose tar unpack /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz
+27 silly lockFile 6930bc35-87248-0-7034197063185275-package /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package
+28 verbose lock /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package /Users/gilles/.npm/6930bc35-87248-0-7034197063185275-package.lock
+29 silly lockFile eb8cf947-87248-0-7034197063185275-tmp-tgz /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz
+30 verbose lock /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz /Users/gilles/.npm/eb8cf947-87248-0-7034197063185275-tmp-tgz.lock
+31 silly gunzTarPerm modes [ '755', '644' ]
+32 silly gunzTarPerm extractEntry package.json
+33 silly gunzTarPerm extractEntry README.md
+34 silly gunzTarPerm extractEntry LICENSE
+35 silly gunzTarPerm extractEntry index.js
+36 silly gunzTarPerm extractEntry bower.json
+37 silly gunzTarPerm extractEntry lib/cache-sheet.js
+38 silly gunzTarPerm extractEntry lib/chain.js
+39 silly gunzTarPerm extractEntry lib/collection.js
+40 silly gunzTarPerm extractEntry lib/http.js
+41 silly gunzTarPerm extractEntry lib/object.js
+42 silly gunzTarPerm extractEntry lib/store-sheet.js
+43 silly gunzTarPerm extractEntry lib/store.js
+44 verbose read json /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package/package.json
+45 silly lockFile 6930bc35-87248-0-7034197063185275-package /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package
+46 silly lockFile 6930bc35-87248-0-7034197063185275-package /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package
+47 silly lockFile eb8cf947-87248-0-7034197063185275-tmp-tgz /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz
+48 silly lockFile eb8cf947-87248-0-7034197063185275-tmp-tgz /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/tmp.tgz
+49 verbose from cache /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package/package.json
+50 verbose tar pack [ '/Users/gilles/.npm/deep-restful/0.1.0/package.tgz',
+50 verbose tar pack   '/var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package' ]
+51 verbose tarball /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+52 verbose folder /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package
+53 silly lockFile 6930bc35-87248-0-7034197063185275-package /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package
+54 verbose lock /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package /Users/gilles/.npm/6930bc35-87248-0-7034197063185275-package.lock
+55 silly lockFile 155bbecd-m-deep-restful-0-1-0-package-tgz /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+56 verbose lock /Users/gilles/.npm/deep-restful/0.1.0/package.tgz /Users/gilles/.npm/155bbecd-m-deep-restful-0-1-0-package-tgz.lock
+57 silly lockFile 6930bc35-87248-0-7034197063185275-package /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package
+58 silly lockFile 6930bc35-87248-0-7034197063185275-package /var/folders/yh/msh4vykn1ls6j6mmg8yxf_b80000gn/T/npm-14383/1408832187248-0.7034197063185275/package
+59 silly lockFile 155bbecd-m-deep-restful-0-1-0-package-tgz /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+60 silly lockFile 155bbecd-m-deep-restful-0-1-0-package-tgz /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+61 silly lockFile 73d0a246-s-npm-deep-restful-0-1-0-package /Users/gilles/.npm/deep-restful/0.1.0/package
+62 verbose lock /Users/gilles/.npm/deep-restful/0.1.0/package /Users/gilles/.npm/73d0a246-s-npm-deep-restful-0-1-0-package.lock
+63 silly lockFile 73d0a246-s-npm-deep-restful-0-1-0-package /Users/gilles/.npm/deep-restful/0.1.0/package
+64 silly lockFile 73d0a246-s-npm-deep-restful-0-1-0-package /Users/gilles/.npm/deep-restful/0.1.0/package
+65 verbose tar unpack /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+66 silly lockFile 73d0a246-s-npm-deep-restful-0-1-0-package /Users/gilles/.npm/deep-restful/0.1.0/package
+67 verbose lock /Users/gilles/.npm/deep-restful/0.1.0/package /Users/gilles/.npm/73d0a246-s-npm-deep-restful-0-1-0-package.lock
+68 silly lockFile 155bbecd-m-deep-restful-0-1-0-package-tgz /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+69 verbose lock /Users/gilles/.npm/deep-restful/0.1.0/package.tgz /Users/gilles/.npm/155bbecd-m-deep-restful-0-1-0-package-tgz.lock
+70 silly gunzTarPerm modes [ '755', '644' ]
+71 silly gunzTarPerm extractEntry package.json
+72 silly gunzTarPerm extractEntry README.md
+73 silly gunzTarPerm extractEntry LICENSE
+74 silly gunzTarPerm extractEntry index.js
+75 silly gunzTarPerm extractEntry bower.json
+76 silly gunzTarPerm extractEntry lib/cache-sheet.js
+77 silly gunzTarPerm extractEntry lib/chain.js
+78 silly gunzTarPerm extractEntry lib/collection.js
+79 silly gunzTarPerm extractEntry lib/http.js
+80 silly gunzTarPerm extractEntry lib/object.js
+81 silly gunzTarPerm extractEntry lib/store-sheet.js
+82 silly gunzTarPerm extractEntry lib/store.js
+83 verbose read json /Users/gilles/.npm/deep-restful/0.1.0/package/package.json
+84 silly lockFile 73d0a246-s-npm-deep-restful-0-1-0-package /Users/gilles/.npm/deep-restful/0.1.0/package
+85 silly lockFile 73d0a246-s-npm-deep-restful-0-1-0-package /Users/gilles/.npm/deep-restful/0.1.0/package
+86 silly lockFile 155bbecd-m-deep-restful-0-1-0-package-tgz /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+87 silly lockFile 155bbecd-m-deep-restful-0-1-0-package-tgz /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+88 silly shasum updated bytes 13161
+89 info shasum 9ff60fe185292ccf5768395b6409256f29a53110
+89 info shasum /Users/gilles/.npm/deep-restful/0.1.0/package.tgz
+90 verbose from cache /Users/gilles/.npm/deep-restful/0.1.0/package/package.json
+91 verbose chmod /Users/gilles/.npm/deep-restful/0.1.0/package.tgz 644
+92 verbose chown /Users/gilles/.npm/deep-restful/0.1.0/package.tgz [ 501, 20 ]
+93 silly lockFile 3a52ce78- .
+94 silly publish { name: 'deep-restful',
+94 silly publish   version: '0.1.0',
+94 silly publish   author: { name: 'Gilles Coomans', email: 'gilles.coomans@gmail.com' },
+94 silly publish   description: 'Homogeneous Restful collection manipulation for deepjs.',
+94 silly publish   keywords: [ 'restful', 'collections', 'deepjs' ],
+94 silly publish   licenses:
+94 silly publish    [ { type: 'LGPLv3.0',
+94 silly publish        url: 'http://www.gnu.org/licenses/lgpl-3.0.txt' } ],
+94 silly publish   repository:
+94 silly publish    { type: 'git',
+94 silly publish      url: 'https://github.com/deepjs/deep-restful.git' },
+94 silly publish   dependencies: { deepjs: '>=0.13.0' },
+94 silly publish   main: './index.js',
+94 silly publish   readme: '# deep-restful\n\nHomogeneous Restful collection manipulation for deepjs.\n\nFor full documentation see http://www.deepjs.org.\n\n## Licence\n\nLGPL 3.0\n',
+94 silly publish   readmeFilename: 'README.md',
+94 silly publish   _id: 'deep-restful@0.1.0',
+94 silly publish   dist: { shasum: '9ff60fe185292ccf5768395b6409256f29a53110' },
+94 silly publish   _from: '.' }
+95 verbose url raw deep-restful
+96 verbose url resolving [ 'https://registry.npmjs.org/', './deep-restful' ]
+97 verbose url resolved https://registry.npmjs.org/deep-restful
+98 info trying registry request attempt 1 at 00:16:38
+99 http PUT https://registry.npmjs.org/deep-restful
+100 http 201 https://registry.npmjs.org/deep-restful
+101 verbose url raw deep-restful
+102 verbose url resolving [ 'https://registry.npmjs.org/', './deep-restful' ]
+103 verbose url resolved https://registry.npmjs.org/deep-restful
+104 info trying registry request attempt 1 at 00:16:39
+105 http GET https://registry.npmjs.org/deep-restful
+106 http 200 https://registry.npmjs.org/deep-restful
+107 verbose uploading [ 'deep-restful/-/deep-restful-0.1.0.tgz/-rev/10-f2f4ef7b20e97c05a6ddf25d3e02d399',
+107 verbose uploading   '/Users/gilles/.npm/deep-restful/0.1.0/package.tgz' ]
+108 verbose url raw deep-restful/-/deep-restful-0.1.0.tgz/-rev/10-f2f4ef7b20e97c05a6ddf25d3e02d399
+109 verbose url resolving [ 'https://registry.npmjs.org/',
+109 verbose url resolving   './deep-restful/-/deep-restful-0.1.0.tgz/-rev/10-f2f4ef7b20e97c05a6ddf25d3e02d399' ]
+110 verbose url resolved https://registry.npmjs.org/deep-restful/-/deep-restful-0.1.0.tgz/-rev/10-f2f4ef7b20e97c05a6ddf25d3e02d399
+111 info trying registry request attempt 1 at 00:16:39
+112 http PUT https://registry.npmjs.org/deep-restful/-/deep-restful-0.1.0.tgz/-rev/10-f2f4ef7b20e97c05a6ddf25d3e02d399
+113 http 403 https://registry.npmjs.org/deep-restful/-/deep-restful-0.1.0.tgz/-rev/10-f2f4ef7b20e97c05a6ddf25d3e02d399
+114 info trying registry request attempt 1 at 00:16:41
+115 http PUT https://registry.npmjs.org/deep-restful/-/deep-restful-0.1.0.tgz/-rev/10-f2f4ef7b20e97c05a6ddf25d3e02d399
+116 http 400 https://registry.npmjs.org/deep-restful/-/deep-restful-0.1.0.tgz/-rev/10-f2f4ef7b20e97c05a6ddf25d3e02d399
+117 verbose bad json <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+117 verbose bad json <html><head>
+117 verbose bad json <title>400 Bad Request</title>
+117 verbose bad json </head><body>
+117 verbose bad json <h1>Bad Request</h1>
+117 verbose bad json <p>Your browser sent a request that this server could not understand.<br />
+117 verbose bad json </p>
+117 verbose bad json </body></html>
+118 error registry error parsing json
+119 error publish Error uploading package
+120 error SyntaxError: Unexpected token <
+120 error <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+120 error <html><head>
+120 error <title>400 Bad Request</title>
+120 error </head><body>
+120 error <h1>Bad Request</h1>
+120 error <p>Your browser sent a request that this server could not understand.<br />
+120 error </p>
+120 error </body></html>
+120 error
+120 error     at Object.parse (native)
+120 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:235:23)
+120 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/main.js:120:22)
+120 error     at Request.EventEmitter.emit (events.js:98:17)
+120 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/main.js:649:16)
+120 error     at Request.EventEmitter.emit (events.js:117:20)
+120 error     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/main.js:611:14)
+120 error     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+120 error     at _stream_readable.js:883:14
+120 error     at process._tickCallback (node.js:415:13)
+121 error If you need help, you may report this log at:
+121 error     <http://github.com/isaacs/npm/issues>
+121 error or email it to:
+121 error     <npm-@googlegroups.com>
+122 error System Darwin 13.3.0
+123 error command "node" "/usr/local/bin/npm" "publish" "--force"
+124 error cwd /Users/gilles/Documents/works/deep/deepjs-docs/bower_components/deep-restful
+125 error node -v v0.10.2
+126 error npm -v 1.2.15
+127 error type unexpected_token
+128 verbose exit [ 1, true ]
