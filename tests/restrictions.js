@@ -20,7 +20,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 						return "hello";
 					}
 				};
-				deep.utils.up(deep.Disallow('get'), a);
+				deep.aup(deep.Disallow('get'), a);
 				return deep(a.get())
 				.fail(function(e){
 					if(e.status === 403)
@@ -29,7 +29,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 				.equal("lolipop");
 			},
 			restriction_up_collection:function(){
-				var a = deep.utils.up(deep.Disallow('get'), deep.Collection());
+				var a = deep.aup(deep.Disallow('get'), deep.Collection());
 				return deep(a.get())
 				.fail(function(e){
 					if(e.status === 403)
@@ -94,7 +94,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 						return "hello";
 					}
 				}
-				obj = deep.utils.up(deep.AllowOnly("b"), obj);
+				obj = deep.aup(deep.AllowOnly("b"), obj);
 				var a,b,c;
 				try{
 					a = obj.a;
