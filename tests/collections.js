@@ -19,25 +19,25 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
         tests : {
             get:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"gilles.coomans@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("u1")
                 .equal({ id:"u1", email:"gilles.coomans@gmail.com" });
             },
             getWithPath:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"gilles.coomans@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("u1/email")
                 .equal("gilles.coomans@gmail.com");
             },
             query:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"gilles.coomans@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("?id=u1")
                 .equal([{ id:"u1", email:"gilles.coomans@gmail.com" }]);
             },
             post:function(){
                 var store = deep.Collection(null, []);
-                return deep.rest(store)
+                return deep.restful(store)
                 .post({ id:"u1", email:"gilles.coomans@gmail.com" })
                 .equal({ id:"u1", email:"gilles.coomans@gmail.com" })
                 .get("u1")
@@ -45,7 +45,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             postErrorIfExists:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"gilles.coomans@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .post({ id:"u1", email:"gilles.coomans@gmail.com" })
                 .fail(function(error){
                     if(error && error.status == 409)   // conflict
@@ -55,7 +55,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             postProducesId:function(){
                 var store = deep.Collection(null, []);
-                return deep.rest(store)
+                return deep.restful(store)
                 .post({ id:"u1", email:"gilles.coomans@gmail.com" })
                 .done(function(s){
                     if(!s.id || typeof s.id !== "string")
@@ -69,7 +69,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         title:{ type:"number", required:true }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .post({ id:"u1", title:"gilles.coomans@gmail.com" })
                 .fail(function(error){
                     if(error && error.status == 412)   // Precondition
@@ -84,13 +84,13 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         title:{ type:"string", required:true }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .post({ id:"u1", title:"gilles.coomans@gmail.com" })
                 .equal({ id:"u1", title:"gilles.coomans@gmail.com" });
             },
             put:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"toto@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .put({ id:"u1", email:"gilles@gmail.com" })
                 .equal({ id:"u1", email:"gilles@gmail.com" })
                 .get("u1")
@@ -98,7 +98,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             putWithQuery:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"toto@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .put("gilles@gmail.com", "u1/email")
                 .equal({ id:"u1", email:"gilles@gmail.com" })
                 .get("u1")
@@ -106,7 +106,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             putErrorIfNotExists:function(){
                 var store = deep.Collection(null, []);
-                return deep.rest(store)
+                return deep.restful(store)
                 .put({ id:"u1", email:"gilles@gmail.com" })
                 .fail(function(error){
                      if(error.status == 404)    // not found
@@ -122,7 +122,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                     },
                     additionalProperties:false
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .put({ id:"u1", titles:"test" })
                 .fail(function(error){
                     if(error && error.status == 412)   // Precondition
@@ -138,13 +138,13 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                     },
                     additionalProperties:false
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .put({ id:"u1", title:"test" })
                 .equal({ id:"u1", title:"test" });
             },
             patch:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"toto@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .patch({ email:"gilles@gmail.com" }, "u1")
                 .equal({ id:"u1", email:"gilles@gmail.com" })
                 .get("u1")
@@ -152,7 +152,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             patchWithQuery:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"toto@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .patch("gilles@gmail.com", "u1/email")
                 .equal({ id:"u1", email:"gilles@gmail.com" })
                 .get("u1")
@@ -160,7 +160,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             patchErrorIfNotExists:function(){
                 var store = deep.Collection(null, []);
-                return deep.rest(store)
+                return deep.restful(store)
                 .patch({ email:"gilles@gmail.com" }, "u1")
                 .fail(function(error){
                     if(error.status == 404) // not found
@@ -170,7 +170,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             del:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"gilles@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .del('u1')
                 .equal(true)
                 .get("u1")
@@ -182,7 +182,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             delWithQuery:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"gilles@gmail.com", test:true }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .del('u1/test')
                 .equal(true)
                 .get("u1")
@@ -190,7 +190,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             delFalseIfNotExists:function(){
                 var store = deep.Collection(null, []);
-                return deep.rest(store)
+                return deep.restful(store)
                 .del('u1')
                 .equal(false);
             },
@@ -203,7 +203,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                     { id:"u5", count:5 },
                     { id:"u6", count:6 }
                 ]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .range(2,4)
                 .equal({ _deep_range_: true,
                   total: 6,
@@ -230,7 +230,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                     { id:"u5", count:5 },
                     { id:"u6", count:6 }
                 ]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .range(2,4, '?count=ge=3')
                 .equal({ _deep_range_: true,
                   total: 4,
@@ -261,7 +261,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .rpc("testrpc", [1456, "world"], "u1")
                 .equal({ id:"u1", base:"was there before", decorated:"hello rpc" })
                 .get("u1")
@@ -287,7 +287,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .rpc("testrpc", [1456, "world"], "u2")
                 .fail(function(error){
                      if(error.status == 404)    // not found
@@ -309,7 +309,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .rpc("testrpco", [1456, "world"], "u2")
                 .fail(function(error){
                      if(error.status == 405)    // MethodNotAllowed
@@ -331,7 +331,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .rpc("testrpc", [1456, "world"], "u1")
                 .equal("lolipop")
                 .get("u1")
@@ -345,7 +345,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             getCopy:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"gilles.coomans@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("u1")
                 .done(function(s){
                     s.hello = "world";
@@ -356,7 +356,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
             },
             queryCopy:function(){
                 var store = deep.Collection(null, [{ id:"u1", email:"gilles.coomans@gmail.com" }]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("?id=u1")
                 .done(function(s){
                     s[0].hello = "world";
@@ -374,7 +374,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                     { id:"u5", count:5 },
                     { id:"u6", count:6 }
                 ]);
-                return deep.rest(store)
+                return deep.restful(store)
                 .range(2,4)
                 .done(function(range){
                     var res = range.results;
@@ -397,7 +397,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         password:{ type:"string", "private":true }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("u1")
                 .equal({ id:"u1", email:"gilles.coomans@gmail.com" });
             },
@@ -407,7 +407,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         password:{ type:"string", "private":true }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("?id=u1")
                 .equal([{ id:"u1", email:"gilles.coomans@gmail.com" }]);
             },
@@ -417,7 +417,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         password:{ type:"string", "private":true }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .post({ id:"u2", email:"john.doe@gmail.com", password:"test"})
                 .equal({ id:"u2", email:"john.doe@gmail.com" });
             },
@@ -427,7 +427,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         password:{ type:"string", "private":true }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .patch({ id:"u1", email:"john.doe@gmail.com" })
                 .equal({ id:"u1", email:"john.doe@gmail.com" });
             },
@@ -437,7 +437,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         title:{ readOnly:true, type:"string" }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .patch({ id:"i1", title:"should produce error" })
                 .fail(function(e){
                     if(e && e.status == 412)    // Precondition
@@ -449,7 +449,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                 var store = deep.Collection(null, [{ id:"i1", label:"weee", userID:"u1" }], {
                     ownerRestriction:"userID"
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .patch({ id:"i1", label:"yesssss" })
                 .fail(function(e){
                     if(e && e.status == 403)    // forbidden because no session.
@@ -464,7 +464,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                 deep.Promise.context.session = {
                     user:{ id:"u1" }
                 };
-                return deep.rest(store)
+                return deep.restful(store)
                 .patch({ id:"i1", label:"yesssss" })
                 .equal({ id:"i1", label:"yesssss", userID:"u1"});
             },
@@ -475,7 +475,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                 deep.Promise.context.session = {
                     user:{ id:"u2" }
                 };
-                return deep.rest(store)
+                return deep.restful(store)
                 .put({ id:"i1", label:"yesssss", userID:"u1" })
                 .fail(function(e){
                     if(e && e.status == 404)    // not found because restriciton
@@ -490,7 +490,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                 deep.Promise.context.session = {
                     user:{ id:"u1" }
                 };
-                return deep.rest(store)
+                return deep.restful(store)
                 .put({ id:"i1", label:"yesssss", userID:"u1" })
                 .equal({ id:"i1", label:"yesssss", userID:"u1"});
             },
@@ -501,7 +501,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                 deep.Promise.context.session = {
                     user:{ id:"u2" }
                 };
-                return deep.rest(store)
+                return deep.restful(store)
                 .del("i1")
                 .equal(false);
             },
@@ -512,7 +512,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                 deep.Promise.context.session = {
                     user:{ id:"u1" }
                 };
-                return deep.rest(store)
+                return deep.restful(store)
                 .del("i1")
                 .equal(true);
             },
@@ -521,7 +521,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                     filter:"&status=published"
                 });
                 deep.Promise.context.session = {};
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("i1")
                 .fail(function(e){
                     if(e && e.status == 404)
@@ -533,7 +533,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                 var store = deep.Collection(null, [{ id:"i1", label:"weee", status:"draft", userID:"u1" }], {
                     filter:"&status=published"
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .get("?id=i1")
                 .equal([]);
             },
@@ -541,7 +541,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                 var store = deep.Collection(null, [{ id:"i1", label:"weee", status:"draft", userID:"u1" }], {
                     filter:"&status=published"
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .del("i1")
                 .equal(false);
             },
@@ -557,7 +557,7 @@ define(["require","deepjs/deep", "../lib/collection", "deepjs/lib/schema"], func
                         }
                     }
                 });
-                return deep.rest(store)
+                return deep.restful(store)
                 .post({ id:"i1", label:"weee", status:"draft", userID:"u1" })
                 .done(function(success){
                      return success.label;
