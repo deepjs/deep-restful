@@ -1,21 +1,25 @@
 {
-  "name": "deep-restful",
-  "version": "0.2.2",
-  "author": "Gilles Coomans <gilles.coomans@gmail.com>",
-  "description": "Homogeneous Restful collection manipulation for deepjs.",
-  "keywords":["restful", "collections", "deepjs"],
-  "licenses": [
-    {
-         "type": "LGPLv3.0",
-         "url": "http://www.gnu.org/licenses/lgpl-3.0.txt"
-     }
-  ],
-  "repository": {
-    "type":"git",
-    "url":"https://github.com/deepjs/deep-restful.git"
-  },
-  "dependencies": {
-    "deepjs":">=0.13.1"
-  },
-  "main": "./index.js"
+ "name": "deep-restful",
+ "version": "0.2.3",
+ "author": "Gilles Coomans <gilles.coomans@gmail.com>",
+ "description": "Homogeneous Restful collection manipulation for deepjs.",
+ "keywords": [
+  "restful",
+  "collections",
+  "deepjs"
+ ],
+ "licenses": [
+  {
+   "type": "LGPLv3.0",
+   "url": "http://www.gnu.org/licenses/lgpl-3.0.txt"
+  }
+ ],
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/deepjs/deep-restful.git"
+ },
+ "dependencies": {
+  "deepjs": ">=0.13.1"
+ },
+ "main": "./index.js"
 }
