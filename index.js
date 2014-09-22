@@ -1,6 +1,9 @@
 /**
  * @author Gilles Coomans <gilles.coomans@gmail.com>
  * Homogeneous Restful collection manipulation for deepjs.
+ *
+ * TODO : use directives-lexer for transformers : allow full json schema.
+ * 
  */
  
 if (typeof define !== 'function') {
