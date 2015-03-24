@@ -5,10 +5,10 @@ if (typeof define !== 'function') {
     var define = require('amdefine')(module);
 }
 
-define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function (require, deep, Unit) {
+define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema", "deep-restful/lib/chain"], function (require, deep) {
 
     var unit = {
-        title:"deep-restful/tests/object-store",
+        title:"deep-restful/tests/object",
         stopOnError:false,
         setup:function(){
             delete deep.Promise.context.session;
@@ -18,37 +18,33 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
         },
         tests : {
             get:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
+                var store = new deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
                  return deep.restful(store)
                 .get("key")
                 .equal({ title:"hello",  email:"gilles.coomans@gmail.com" })
-                // .valuesEqual({ title:"hello", email:"gilles.coomans@gmail.com" });
             },
             getWithPath:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
+                var store = new deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
                 return deep.restful(store)
                 .get("key/email")
                 .equal("gilles.coomans@gmail.com")
-                // .valuesEqual("gilles.coomans@gmail.com");
             },
             query:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
+                var store = new deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
                 return deep.restful(store)
                 .get("?title=hello")
                 .equal([{ title:"hello", email:"gilles.coomans@gmail.com" }])
-                // .valuesEqual([{ title:"hello", email:"gilles.coomans@gmail.com" }]);
             },
             post:function(){
-                var store = deep.Object(null, { });
+                var store = new deep.Object(null, { });
                 return deep.restful(store)
                 .post({ title:"hello", email:"gilles.coomans@gmail.com" }, "key")
                 .equal({ title:"hello", email:"gilles.coomans@gmail.com" })
-                // .valuesEqual({ title:"hello", email:"gilles.coomans@gmail.com" })
                 .get("key")
                 .equal({ title:"hello", email:"gilles.coomans@gmail.com" });
             },
             postErrorIfExists:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
+                var store = new deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
                 return deep.restful(store)
                 .post({ title:"hello", email:"gilles.coomans@gmail.com" }, "key")
                 .fail(function(error){
@@ -58,20 +54,21 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal("lolipop");
             },
             postValidationFailed:function(){
-                var store = deep.Object(null, {},
-                {
-                    properties:{
-                        key:{
-                            properties:{
-                                title:{ type:"string", required:true },
-                                email:{ type:"string", required:true }
-                            },
-                            additionalProperties:false
+                var store = new deep.Object({ 
+                    schema:{
+                        properties:{
+                            key:{
+                                properties:{
+                                    title:{ type:"string", required:true },
+                                    email:{ type:"string", required:true }
+                                },
+                                additionalProperties:false
+                            }
                         }
                     }
                 });
                 return deep.restful(store)
-                .post({ title:"hello", hop:"gilles.coomans@gmail.com" }, "key")
+                .post({ title:"hello", hop:"yop" }, "key")
                 .fail(function(error){
                     if(error && error.status == 412)   // Precondition
                         return "lolipop";
@@ -79,7 +76,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal("lolipop");
             },
             postValidationOk:function(){
-                var store = deep.Object(null, {},
+                var store = new deep.Object(null, {},
                 {
                     properties:{
                         key:{
@@ -96,7 +93,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello", email:"gilles.coomans@gmail.com" });
             },
             put:function(){
-                var store = deep.Object(null, { key:{ title:"bloup", email:"gilles.coomans@gmail.com" } });
+                var store = new deep.Object(null, { key:{ title:"bloup", email:"gilles.coomans@gmail.com" } });
                 return deep.restful(store)
                 .put({ title:"hello", email:"gilles@gmail.com" }, "key")
                 .equal({ title:"hello", email:"gilles@gmail.com" })
@@ -105,7 +102,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello", email:"gilles@gmail.com" });
             },
             putWithQuery:function(){
-                var store = deep.Object(null, { key:{ title:"bloup", email:"gilles@gmail.com" } });
+                var store = new deep.Object(null, { key:{ title:"bloup", email:"gilles@gmail.com" } });
                 return deep.restful(store)
                 .put("hello", "key/title")
                 .equal({ title:"hello", email:"gilles@gmail.com" })
@@ -114,7 +111,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello", email:"gilles@gmail.com" });
             },
             putErrorIfNotExists:function(){
-                var store = deep.Object(null, {  });
+                var store = new deep.Object(null, {  });
                 return deep.restful(store)
                 .put({ title:"hello", email:"gilles@gmail.com" }, "key")
                 .fail(function(error){
@@ -124,7 +121,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal("lolipop");
             },
             putValidationFailed:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }}, {
+                var store = new deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }}, {
                     properties:{
                         key:{
                             properties:{
@@ -144,7 +141,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal("lolipop");
             },
             putValidationOk:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }}, {
+                var store = new deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }}, {
                     properties:{
                         key:{
                             properties:{
@@ -160,7 +157,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello", email:"test" });
             },
             patch:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }});
+                var store = new deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }});
                 return deep.restful(store)
                 .patch({ email:"gilles@gmail.com" }, "key")
                 .equal({ title:"hello", email:"gilles@gmail.com" })
@@ -169,7 +166,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello", email:"gilles@gmail.com" });
             },
             patchWithQuery:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }});
+                var store = new deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }});
                 return deep.restful(store)
                 .patch("gilles@gmail.com", "key/email")
                 .equal({ title:"hello", email:"gilles@gmail.com" })
@@ -178,7 +175,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello", email:"gilles@gmail.com" });
             },
             patchErrorIfNotExists:function(){
-                var store = deep.Object(null, {});
+                var store = new deep.Object(null, {});
                 return deep.restful(store)
                 .patch({ email:"gilles@gmail.com" }, "key")
                 .fail(function(error){
@@ -188,7 +185,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal("lolipop");
             },
             del:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }});
+                var store = new deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }});
                 return deep.restful(store)
                 .del('key')
                 .equal(true)
@@ -201,7 +198,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal("lolipop");
             },
             delWithQuery:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }});
+                var store = new deep.Object(null, { key:{ title:"hello", email:"testezzzzz" }});
                 return deep.restful(store)
                 .del('key/email')
                 .equal(true)
@@ -210,13 +207,13 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello" });
             },
             delFalseIfNotExists:function(){
-                var store = deep.Object(null, { });
+                var store = new deep.Object(null, { });
                 return deep.restful(store)
                 .del('key')
                 .equal(false);
             },
             range:function(){
-                var store = deep.Object(null, {
+                var store = new deep.Object(null, {
                     a:{  count:1 },
                     b:{  count:2 },
                     c:{  count:3 },
@@ -248,7 +245,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 ]);*/
             },
             rangeWithQuery:function(){
-                var store = deep.Object(null, {
+                var store = new deep.Object(null, {
                     a:{  count:1 },
                     b:{  count:2 },
                     c:{  count:3 },
@@ -279,7 +276,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
             },
             rpc:function(){
                 var checker = {};
-                var store = deep.Object(null, { key:{ title:"hello", base:"was there before" } }, null, {
+                var store = new deep.Object(null, { key:{ title:"hello", base:"was there before" } }, null, {
                     methods:{
                         testrpc:function(handler, arg1, arg2)
                         {
@@ -296,7 +293,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello", base:"was there before", decorated:"hello rpc" })
                 .get("key")
                 .equal({ title:"hello", base:"was there before", decorated:"hello rpc" })
-                .deep(checker)
+                .nodes(checker)
                 .equal({
                     throughRPC:true,
                     args:[1456, "world"],
@@ -305,7 +302,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
             },
             rpcErrorIfNotExists:function(){
                 var checker = {};
-                var store = deep.Object(null, { }, null, {
+                var store = new deep.Object(null, { }, null, {
                     methods:{
                         testrpc:function(handler, arg1, arg2)
                         {
@@ -327,7 +324,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
             },
             rpcMethodNotAllowed:function(){
                 var checker = {};
-                var store = deep.Object(null, { key:{ title:"hello", base:"was there before" } }, null, {
+                var store = new deep.Object(null, { key:{ title:"hello", base:"was there before" } }, null, {
                     methods:{
                         testrpc:function(handler, arg1, arg2)
                         {
@@ -349,7 +346,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
             },
             rpcCopy:function(){
                 var checker = {};
-                var store = deep.Object(null, { key:{ title:"hello", base:"was there before" } }, null, {
+                var store = new deep.Object(null, { key:{ title:"hello", base:"was there before" } }, null, {
                     methods:{
                         testrpc:function(handler, arg1, arg2)
                         {
@@ -366,7 +363,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal("lolipop")
                 .get("key")
                 .equal({ title:"hello", base:"was there before" })
-                .deep(checker)
+                .nodes(checker)
                 .equal({
                     throughRPC:true,
                     args:[1456, "world"],
@@ -374,7 +371,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 });
             },
             getCopy:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
+                var store = new deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
                 return deep.restful(store)
                 .get("key")
                 .done(function(s){
@@ -385,7 +382,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ title:"hello", email:"gilles.coomans@gmail.com"});
             },
             queryCopy:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
+                var store = new deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } });
                 return deep.restful(store)
                 .get("?title=hello")
                 .done(function(s){
@@ -396,7 +393,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal([{ title:"hello", email:"gilles.coomans@gmail.com"}]);
             },
             rangeCopy:function(){
-                var store = deep.Object(null, { 
+                var store = new deep.Object(null, { 
                     a:{ count:1 },
                     b:{ count:2 },
                     c:{ count:3 },
@@ -422,7 +419,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ count:3 });
             },
             privateGet:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } }, {
+                var store = new deep.Object(null, { key:{ title:"hello", email:"gilles.coomans@gmail.com" } }, {
                     properties:{ 
                         key:{
                             properties:{
@@ -437,7 +434,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 //.valuesEqual({ email:"gilles.coomans@gmail.com" });
             },
             /*privateQuery:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"ksss" } }, {
+                var store = new deep.Object(null, { key:{ title:"hello", email:"ksss" } }, {
                     properties:{ 
                         key:{
                             properties:{
@@ -451,7 +448,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal([{ email:"ksss" }]);
             }*/
             privatePost:function(){
-                var store = deep.Object(null, {}, {
+                var store = new deep.Object(null, {}, {
                     properties:{ 
                         key:{
                             properties:{
@@ -465,7 +462,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ email:"john.doe@gmail.com" });
             },
             privatePatch:function(){
-                var store = deep.Object(null, { key:{ title:"hello", email:"ksss" } }, {
+                var store = new deep.Object(null, { key:{ title:"hello", email:"ksss" } }, {
                     properties:{ 
                         key:{
                             properties:{
@@ -479,7 +476,7 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .equal({ email:"john.doe@gmail.com" });
             },
             readOnly:function(){
-                var store = deep.Object(null, { key:{ title:"hello" }}, {
+                var store = new deep.Object(null, { key:{ title:"hello" }}, {
                     properties:{
                         key:{
                             properties:{
@@ -596,14 +593,15 @@ define(["require","deepjs/deep", "../lib/object", "deepjs/lib/schema"], function
                 .del("i1")
                 .equal(false);
             }*/
-            , transformers:function(){
-                var store = deep.Object(null, [], {
+            , 
+            transformers:function(){
+                var store = new deep.Object(null, [], {
                     properties:{
                         key:{
                             properties:{
                                 label:{ 
                                     type:"string",
-                                    transformers:[
+                                    transform:[
                                     function(node){
                                         return node.value+":hello"
                                     }]
