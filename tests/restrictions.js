@@ -21,7 +21,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 					}
 				};
 				deep.aup(deep.Disallow('get'), a);
-				return deep(a.get())
+				return deep.nodes(a.get())
 				.fail(function(e){
 					if(e.status === 403)
 						return "lolipop";
@@ -29,8 +29,8 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 				.equal("lolipop");
 			},
 			restriction_up_collection:function(){
-				var a = deep.aup(deep.Disallow('get'), deep.Collection());
-				return deep(a.get())
+				var a = deep.aup(deep.Disallow('get'), new deep.Collection());
+				return deep.nodes(a.get())
 				.fail(function(e){
 					if(e.status === 403)
 						return "lolipop";
@@ -57,7 +57,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 			},
 			restriction_backgrounds_collections:function(){
 				var a = {
-					_backgrounds:[deep.Collection(), deep.Disallow('get')]
+					_backgrounds:[ new deep.Collection(), deep.Disallow('get')]
 				};
 				return deep.flatten(a)
 				.done(function(a){
@@ -71,7 +71,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 			},
 			restriction_ocm_collections:function(){
 				var a = deep.ocm({
-					role1:deep.Collection(),
+					role1:new deep.Collection(),
 					role2:{
 						_backgrounds:["this::../role1", deep.Disallow('get')]
 					}
@@ -106,7 +106,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 
 				}
 				var r = [a, b, c];
-				return deep(r)
+				return deep.nodes(r)
 				.equal([true, "hello", 403])
 			},
 			allow_only__backgrounds:function(){
@@ -132,7 +132,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 
 				}
 				var r = [a, b, c];
-				return deep(r)
+				return deep.nodes(r)
 				.equal([true, "hello", 403])
 			},
 			allow_only_backgrounds2:function(){
@@ -157,7 +157,7 @@ define(["require","deepjs/deep", "../lib/collection"], function (require, deep) 
 
 				}
 				var r = [a, b, c];
-				return deep(r)
+				return deep.nodes(r)
 				.equal([true, "hello", "world"])
 			}
 		}
