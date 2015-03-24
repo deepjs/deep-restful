@@ -48,7 +48,7 @@ var deep = require("deepjs/deep"); // load core
 require("deep-restful/index");  // load chain
 require("deep-restful/lib/collection"); // load collection manager
 
-deep.Collection("myProtocol", [{ id:"e1", title:"hello world"}]);
+new deep.Collection("myProtocol", [{ id:"e1", title:"hello world"}]);
 
 deep.restful("myProtocol")
 .get("e1")
@@ -70,7 +70,7 @@ var deep = require("deepjs/deep"); // load core
 require("deep-restful/index");  // load chain
 require("deep-restful/lib/collection"); // load collection manager
 
-deep.Collection({ 
+new deep.Collection({ 
 	protocol:"myProtocol", 
 	collection:[{ id:"e1", title:"hello world"}],
 	schema:{
@@ -109,7 +109,7 @@ require("deep-restful/index");  // load chain
 require("deep-restful/lib/collection"); // load collection manager
 
 
-var myCollection = deep.Collection({ 
+var myCollection = new deep.Collection({ 
 	protocol:"myProtocol", 
 	collection:[{ id:"e1", title:"hello world"}],
 	schema:{
@@ -119,7 +119,7 @@ var myCollection = deep.Collection({
 				required:true, 
 				minlength:6,
 				"private":true
-				transformers:[function(input){ return deep.utils.Hash(input); }] 
+				transform:[function(input){ return deep.utils.Hash(input); }] 
 			},
 			email:{ type:"string", format:"email", readOnly:true }
 		}
@@ -149,7 +149,7 @@ require("deep-restful/index");  // load chain
 require("deep-restful/lib/collection"); // load collection manager
 
 
-deep.Collection({ 
+new deep.Collection({ 
 	protocol:"myProtocol", 
 	collection:[{ id:"e1", title:"hello world"}],
 	methods:{
@@ -283,7 +283,7 @@ var deep = require('deepjs'); // the core
 require('deep-restful'); // homogeneous restful API
 require('deep-restful/lib/collection'); // simple memory collection
 
-deep.Collection("myobjects", []);
+new deep.Collection("myobjects", []);
 
 var titles = ["hello", "deepjs", "world"];
 var count = 0;
