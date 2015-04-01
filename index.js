@@ -11,6 +11,6 @@ if (typeof define !== 'function') {
 }
 define(["require", "deepjs/deep", "./lib/chain"], function(require, deep, collection, chain){
 	deep.coreUnits = deep.coreUnits || [];
-	deep.coreUnits.push("js::deep-restful/tests/restrictions");
+	deep.coreUnits.push("req::deep-restful/tests/restrictions");
 	return deep;
 });
